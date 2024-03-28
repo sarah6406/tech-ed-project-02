@@ -3,10 +3,11 @@ const cookieButton = document.getElementById("cookie-img");
 const upgradeButton = document.getElementById("upgrade-button");
 const cookiesNum = document.getElementById("cookies-span");
 const cookiesPerSec = document.getElementById("cookiesPerSec-span");
+const resetBtn = document.getElementById("reset-button");
 
 // //make an object to keep track of cookie count
 const items = {
-  cookies: 11,
+  cookies: 0,
   upgrades: 0,
 };
 
@@ -28,17 +29,18 @@ function getCookie() {
 
 //function to buy upgrade
 //this needs to be onclick!!!
+upgradeButton.addEventListener("click", getUpgrade);
 function getUpgrade() {
-  items.upgrades++;
-  items.cookies -= 10;
-    if (items.cookies < 10) {
-      alert("You do not have enough cookies for upgrade!");
-    } else {
-      items.cookies -= 10;
-    }
+  if (items.cookies < 10) {
+    alert("You do not have enough cookies for upgrade! Keep clicking!");
+  } else {
+    items.upgrades++;
+    items.cookies -= 10;
+  }
   updatePage();
   updateLS();
 }
+
 function updatePage() {
   cookiesNum.textContent = items.cookies;
   cookiesPerSec.textContent = items.upgrades;
@@ -47,6 +49,23 @@ function updatePage() {
 function updateLS() {
   localStorage.setItem("items", JSON.stringify(items));
 }
+
+cookieButton.addEventListener("click", getCookie);
+upgradeButton.addEventListener("click", getUpgrade);
+
+function reset() {
+  items.cookies = 0;
+  items.upgrades = 0;
+  updatePage();
+  updateLS();
+}
+resetBtn.addEventListener("click", reset);
+
+setInterval(function () {
+  items.cookies += items.upgrades;
+  updatePage();
+  updateLS();
+}, 1000); // 1000 milliseconds == 1 second
 
 //   //   upgradeNum.textContent = stats.upgradeCount;
 //   //   const stringifiedUpgradeNum = JSON.stringify(stats);
@@ -63,10 +82,10 @@ function updateLS() {
 //   items.upgrades++;
 // }
 // // addEventlistener for buy cookie
-cookieButton.addEventListener("click", getCookie);
+
 // // addEventlistener for buy upgrade
 // //      remember to subtract amount of cookies from cookie count
-upgradeButton.addEventListener("click", getUpgrade);
+
 // // DOM to disable button until there are enough cookies to buy the upgrade
 
 // if (cookieupgrade - cookiecount < 0) {
@@ -88,9 +107,3 @@ upgradeButton.addEventListener("click", getUpgrade);
 // document.getElementById( "cookie-img" ).onclick = function() {
 //     console.log("image clicked")
 // };
-
-// setInterval(function () {
-//   items.cookies += items.upgrades;
-//   updatePage();
-//   updateLS();
-// }, 1000); // 1000 milliseconds == 1 second
