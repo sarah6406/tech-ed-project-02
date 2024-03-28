@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"/>
     <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Cookie Clicker</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>0</h1>
-        <h2>1 cps</h2>
-        <button id="cookieBtn">Click for Cookies!</button> 
-        <!-- replace with an image - addEventListener to img -->
-        <button id="upgrade">Upgrade</button>
+      <img
+        id="cookie-img"
+        src="https://chocolatecoveredkatie.com/wp-content/uploads/2023/04/Single-Serving-Protein-Cookie-Recipe-jpg.webp"
+        alt="picture of a cookie"
+      />
+      
+      <p>Cookies: <span id="cookies-span">0</span></p>
+      <p>Cookies per second: <span id="cookiesPerSec-span">0</span></p>
+      
+      <button id="upgrade-button">Click for UPGRADE!</button>
     </div>
-    <p>Cookies: <span id="cookies-span">0</span></p>
-    <p>Cookies per second: <span id="cookiesPerSec-span">0</span></p>
+
     <!-- <table>
         <td>
             <tr>0</tr>
@@ -59,5 +65,5 @@
             <tr></tr>
         </td>
     </table> -->
-</body>
+  </body>
 </html>
